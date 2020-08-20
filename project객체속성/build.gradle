@@ -1,0 +1,35 @@
+//defaultTasks로 수행할 태스크 지정
+defaultTasks = ['exTask1', 'exTask2'] 
+
+//project 객체 속성
+project.description = 'Project Object Description'
+project.version = 'example project v1.0'
+
+/**
+	Project name : 생략..
+	Project description : Project Object Description
+	Project group :
+	Project path : :
+	Project projectDir : C:\Users\..생략..\project객체속성
+	Project status : release
+	Project state : project state 'EXECUTED'
+	Project version : example project v1.0
+*/
+task exTask1 {
+	doLast {
+		println("Project name : " + project.name)
+		println("Project description : " + project.description)
+		println("Project group : " + project.group)
+		println("Project path : " + project.path)
+		println("Project projectDir : " + project.projectDir)
+		println("Project status : " + project.status)
+		println("Project state : " + project.state)
+		println("Project version : " + project.version)
+	}
+}
+
+task exTask2 {
+	doLast {
+		println(project.description)
+	}
+}

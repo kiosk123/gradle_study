@@ -1,0 +1,24 @@
+/*
+	$ gradle gradleTask1 gradleTask2 실행시
+
+	> Configure project :
+	This is gradleTask2
+
+	> Task :gradleTask1
+	This is gradleTask1
+	
+	gradleTask2가 먼저 실행된 이유는 gradleTask2는
+	doLast를 통해 실행 태스크로 인식되었지만 gradleTask2는
+	설정 블록으로 인식되었음 
+	그레이들 라이프사이클에서 설정은 프로젝트 설정단계에서 먼저 수행되고
+	실행은 태스크 실행단계에서 수행됨
+*/
+task gradleTask1 {
+	doLast {
+		println("This is gradleTask1")
+	}
+}
+
+task gradleTask2 {
+	println("This is gradleTask2")
+}

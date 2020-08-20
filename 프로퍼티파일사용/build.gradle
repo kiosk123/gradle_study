@@ -1,0 +1,8 @@
+/*
+	gradle hello를 cmd에서 실행
+*/
+task hello {
+	doLast {
+		println(msg)
+	}
+}

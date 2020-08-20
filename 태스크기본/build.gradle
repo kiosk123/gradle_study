@@ -1,0 +1,11 @@
+/*
+	해당 디렉터리로 이동후 cmd에서
+	gradle task명 실행
+	ex) gradle hello
+*/
+
+task hello{
+	doLast {
+		println("hello gradle!")
+	}
+}

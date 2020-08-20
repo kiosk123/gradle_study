@@ -1,0 +1,10 @@
+//코어 바이너리 플러그인 적용 application
+/**
+	org.shipkit.bintray : shipkit 태스크 추가
+	사용법은 https://github.com/mockito/shipkit 참조
+	
+*/
+plugins {
+	id 'application'
+	id "org.shipkit.bintray" version "0.9.116"
+}

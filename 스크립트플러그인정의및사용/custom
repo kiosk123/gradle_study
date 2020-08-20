@@ -1,0 +1,7 @@
+defaultTasks "hello"
+
+task hello {
+	doLast {
+		println("custom plugin hello")
+	}
+}
