@@ -1,0 +1,58 @@
+plugins {
+	id 'java-library'
+	id 'eclipse'
+}
+
+/**
+ * 저장소 설정
+ */
+repositories {
+	jcenter()
+	//	mavenCentral()
+}
+
+/**
+ * 실행코드와 테스트코드 디렉터리 경로 설정
+ */
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/main/java']
+		}
+	}
+	test {
+		java {
+			srcDirs = ['src/test/java']
+		}
+	}
+}
+version = 'v1.0'
+
+/**
+ * 자바 버전 설정
+ */
+java {
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+}
+/**
+ • compileOnly — 코드 컴파일에만 사용하고 런타임에는 사용하지 않음
+ • implementation (supersedes compile) — 코드를 컴파일하는데 사용하고 런타임에도 사용함
+ • runtimeOnly (supersedes runtime) — 컴파일에 사용하지 않고 런타임에만 사용
+ • testCompileOnly — same as compileOnly except it’s for the tests
+ • testImplementation — test equivalent of implementation
+ • testRuntimeOnly — test equivalent of runtimeOnly
+ */
+dependencies {
+	api 'org.apache.commons:commons-math3:3.6.1'
+	implementation 'com.google.guava:guava:29.0-jre'
+	implementation 'org.apache.commons:commons-lang3:3.11'
+	testImplementation 'junit:junit:4.13'
+}
+
+/**
+ * Jar 파일 위치 지정
+ */
+tasks.withType(Jar) {
+	destinationDir = file("$rootDir")
+}
