@@ -54,5 +54,5 @@ dependencies {
  * Jar 파일 위치 지정
  */
 tasks.withType(Jar) {
-	destinationDir = file("$rootDir")
+	destinationDirectory = file("$rootDir")
 }

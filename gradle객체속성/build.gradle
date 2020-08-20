@@ -1,0 +1,20 @@
+/*
+	$ gradle -q showGradleProps
+	C:\sw\gradle\gradle-6.5.1
+	C:\Users\GradleUser\.gradle
+	6.5.1
+	root project 'gradle객체속성'
+	StartParameter{taskRequests=[DefaultTaskExecutionRequest{args=[showGradleProps],projectPath='null'}], excludedTaskNames=[], currentDir=C:\Users\HeoJongTae\Desktop\icon\eclipse\eclipse_jee\workspace\gradle_study\gradle객체속성, searchUpwards=true, projectProperties={}, systemPropertiesArgs={}, gradleUserHomeDir=C:\Users\HeoJongTae\.gradle, gradleHome=C:\sw\gradle\gradle-6.5.1, logLevel=QUIET, showStacktrace=INTERNAL_EXCEPTIONS, buildFile=null, initScripts=[], dryRun=false, rerunTasks=false, offline=false, refreshDependencies=false, parallelProjectExecution=false, configureOnDemand=false, maxWorkerCount=8, buildCacheEnabled=false, writeDependencyLocks=false, verificationMode=STRICT, refreshKeys=false}
+	org.gradle.execution.taskgraph.DefaultTaskExecutionGraph@59d40b88
+*/
+
+task showGradleProps {
+	doLast {
+		println(gradle.gradleHomeDir)		//그레이들 홈 디렉터리 출력
+		println(gradle.gradleUserHomeDir)	//사용자 홈 디렉터리 출력
+		println(gradle.gradleVersion) 		//그레이들 버전
+		println(gradle.rootProject)			//그레이들 rootProject
+		println(gradle.startParameter)		//빌드 수행 파라미터
+		println(gradle.taskGraph)			//태스크 그래프
+	}
+}

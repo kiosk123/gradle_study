@@ -1,0 +1,35 @@
+/*
+	$ gradle -q taskPropsEnd
+	taskProps
+	Task Group
+	:taskProps
+	Show Task Props
+	props task end
+	all process end
+*/
+
+task taskProps {
+	group 'Task Group'
+	description 'Show Task Props' 
+	doLast {
+		println(name)			//실행태스크 이름
+		println(group)			//태스크가 속한 그룹
+		println(path)			//태스크 경로
+		println(description)	//태스크 설명
+	}
+}
+
+task taskPropsEnd {
+	enabled true 			//태스크 실행여부 
+	dependsOn 'taskProps'	//의존 태스크 지정
+	finalizedBy 'finalTask' //태스크 실행 후 최종 수행 태스크 지정
+	doLast {
+		println("props task end")
+	}
+}
+
+task finalTask {
+	doLast {
+		println("all process end")
+	}
+}
