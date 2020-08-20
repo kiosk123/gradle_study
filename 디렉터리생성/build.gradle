@@ -1,0 +1,9 @@
+/*
+	디렉터리 생성
+	gradle -q makeDirTask
+*/
+task makeDirTask {
+    doLast {
+        mkdir "src/main/java"
+    }
+}

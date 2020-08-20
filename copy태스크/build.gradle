@@ -1,0 +1,50 @@
+/*
+	파일복사
+	gradle -q copyFile1
+*/
+
+task copyFile1(type: Copy) {
+	from 'src/from'	//대상파일 경로	
+	into 'src/to'		//목적지 경로
+	
+	include "**/*.txt"
+	exclude "**/*.java"
+}
+
+/*
+	rename을 이용한 복사
+	gradle -q copyFile2
+*/
+task copyFile2(type: Copy) {
+	from('src/from') {
+		include "**/*.txt"
+		exclude "**/*.java"
+		rename 'data.*' , 'data.bin'
+	}		
+	into 'src/to'		
+}
+
+/*
+	필터사용
+	복사하려는 파일의 내용 aaa ccc를 bbb ddd로 전부 치환
+	gradle -q copyFile3
+*/
+
+task copyFile3(type: Copy) {
+	from('src/from') {
+		include "**/*.txt"
+		exclude "**/*.java"
+		rename 'data.*' , 'data.bin'
+	}		
+	into 'src/to'		
+	
+	filter {
+		line -> 
+			line.replaceAll('aaa', 'bbb')
+	}
+	
+	filter {
+		line -> 
+			line.replaceAll('ccc', 'ddd')
+	}
+}

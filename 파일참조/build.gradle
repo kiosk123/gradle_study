@@ -1,0 +1,51 @@
+/*
+	$ gradle -q execute
+	Java File Path : C:\Users\GradleUser\Desktop\icon\eclipse\eclipse_jee\workspace\gradle_study\파일참조\src\JavaFile.java
+	Txt File Path : C:\Users\GradleUser\Desktop\icon\eclipse\eclipse_jee\workspace\gradle_study\파일참조\src\text.txt
+	URL Path : C:\Users\GradleUser\Desktop\icon\eclipse\eclipse_jee\workspace\gradle_study\파일참조\src\text.txt
+	URI Path : C:\Users\GradleUser\Desktop\icon\eclipse\eclipse_jee\workspace\gradle_study\파일참조\src\text.txt
+	closer Path : C:\Users\GradleUser\Desktop\icon\eclipse\eclipse_jee\workspace\gradle_study\파일참조\src\text.txt
+	Callable Path : C:\Users\GradleUser\Desktop\icon\eclipse\eclipse_jee\workspace\gradle_study\파일참조\src\JavaFile.java
+*/
+
+// 상대 경로
+File javaFile = file('src/JavaFile.java')
+File textFile = file(new File('src/text.txt'))
+ 
+// URL 객체 file:은 루트디렉터리기준
+File urlFile = null
+URL url = new URL('file:/src/text.txt')
+urlFile = file(url)
+
+// URI 객체 file:은 루트디렉터리기준
+File uriFile = null
+URI uri = new URI('file:/src/text.txt')
+uriFile = file(uri)
+
+//파일 검증 
+File textFile1 = file('src', PathValidation.DIRECTORY)  	//디렉터리 경로인지 검증
+File textFile2 = file('src/text.txt', PathValidation.FILE)	//파일경로가 올바른지 검증(파일유무확인)
+File textFile3 = file('src/text.txt', PathValidation.EXISTS)//파일 또는 디렉터리 존재 여부 확인
+File textFile4 = file('src/text.txt', PathValidation.NONE)	//파일 검증하지 않음
+ 
+// 클로저
+File closer = file{'src/text.txt'}
+ 
+// Callable 인터페이스
+import java.util.concurrent.Callable
+
+File callablePath = file(new Callable<String>(){
+	String call(){
+		'src/JavaFile.java'
+	}
+})
+ 
+task execute {
+	println 'Java File Path : '+ javaFile.absolutePath
+	println 'Txt File Path : '+ textFile.path
+	println 'URL Path : ' + urlFile.path
+	println 'URI Path : ' + uriFile.path
+	println 'closer Path : ' + closer.path
+	println 'Callable Path : ' + callablePath.path
+	
+}

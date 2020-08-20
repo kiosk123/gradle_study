@@ -1,0 +1,29 @@
+/*
+	파일복사
+	gradle -q copyFile1
+*/
+
+task copyFile(type: Copy) {
+	from 'src/from'	
+	into 'src/to'	
+}
+
+
+/*
+	디렉터리삭제
+	gradle -q deleteFile1
+*/
+task deleteFile1(type: Delete) {
+	delete 'src/to' 		//디렉터리삭제
+	followSymlinks = true	//true면 심볼릭 링크 따라서 원본파일 삭제
+}
+
+
+/*
+	파일삭제
+	gradle -q deleteFile2
+*/
+task deleteFile2(type: Delete) {
+	delete 'src/to/data.txt', 'src/to/Test.java'	
+	followSymlinks = true
+}

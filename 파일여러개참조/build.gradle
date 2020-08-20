@@ -1,0 +1,64 @@
+/*
+	$ gradle
+	> Configure project :
+	collection files : C:\Users\GradleUser\Desktop\icon\eclipse\eclipse_jee\workspace\gradle_study\파일여러개참조\src\text1.txt
+	collection files : C:\Users\GradleUser\Desktop\icon\eclipse\eclipse_jee\workspace\gradle_study\파일여러개참조\src\text2.txt
+	text1.txt : C:\Users\GradleUser\Desktop\icon\eclipse\eclipse_jee\workspace\gradle_study\파일여러개참조\src\text1.txt
+	...
+
+*/
+//FileCollection을 이용한 파일 여러개 처리
+FileCollection fileCollection = files('src/text1.txt','src/text2.txt', new URI('file:/src/text3.txt'))
+
+println('collection files : ' + fileCollection[0].path)
+println('collection files : ' + fileCollection[1].path)
+
+fileCollection.each{
+	println(it.name + " : " +it.path)
+}
+
+/*
+	리스트 지정
+*/
+def fileList = [new File('src/text1.txt'),new File('src/text2.txt'), new URI('file:/src/text3.txt')]
+fileList = fileList + files(new URL('file:/src/text4.txt')) //덧셈 연산
+FileCollection fileCollection2 = files(fileList)
+fileCollection2.each{
+	println("FileCollection2 : " + it.name + " : " +it.path)
+} 
+
+//파일 개수 확인
+if (fileCollection2.files.size() == 2) {
+	println("file count : 2")
+} else {
+	println("file count : " + fileCollection2.files.size())	
+}
+
+//파일 필터링
+FileCollection filtered = fileCollection2.filter {
+	file ->
+		file.name.endsWith '3.txt'
+}
+
+filtered.each {
+	println(it.name + " " + it.path)
+}
+
+//파일트리 (파일콜렉션과 비슷하지만 트리구조)
+FileTree fileTree = fileTree('src')
+
+//파일트리를 이용한 파일탐색
+fileTree.visit{
+	file ->
+		println(file.getName() + ":" +file.getPath())
+}
+
+//matching을 덧붙여서 파일을 걸러내거나 포함할 수 있다.
+fileTree = fileTree.matching {
+	exclude "**/*.txt"
+}
+
+fileTree.each{
+	println("FileTree : " + it.name + " : " +it.path)
+}
+
