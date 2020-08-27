@@ -1,0 +1,26 @@
+/*
+$ gradle -q action
+C:\Users\HeoJongTae\Desktop\icon\eclipse\eclipse_jee\workspace\gradle_study\파일의존관계지정\lib\commonLib.jar
+*/
+
+// 환경구성 정의
+configurations { 
+   conf 
+} 
+ 
+// 의존관계 정의  
+dependencies { 
+   // 1. 파일 의존관계 - 특정 파일이나 라이브러리 지정
+   conf files("lib/commonLib.jar")
+   // 2. 파일 의존관계 - 디렉터리 지정(디렉터리 안에 있는 모든 라이브러리 지정)
+   conf fileTree(dir:"lib",include:"**/*.jar")
+
+} 
+
+task action {
+	doLast {
+		configurations.conf.each { 
+			println(it.getAbsolutePath()) 
+		}
+	} 
+} 

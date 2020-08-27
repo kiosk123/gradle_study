@@ -1,0 +1,41 @@
+/*
+라이브러리 저장경로 확인
+$ gradle -q action
+C:\Users\HeoJongTae\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-classic\1.0.13\6b56ec752b42ccfa1415c0361fb54b1ed7ca3db6\logback-classic-1.0.13.jar
+C:\Users\HeoJongTae\.gradle\caches\modules-2\files-2.1\org.springframework\spring-orm\4.0.2.RELEASE\15e46f115b4cb644bf30103628278fd59155f520\spring-orm-4.0.2.RELEASE.jar
+C:\Users\HeoJongTae\.gradle\caches\modules-2\files-2.1\org.gradle.api.plugins\gradle-cargo-plugin\0.6.1\64f1c540b12e7fbfa701961b1a11477dd2804ea6\gradle-cargo-plugin-0.6.1.jar
+C:\Users\HeoJongTae\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-core\1.0.13\dc6e6ce937347bd4d990fc89f4ceb469db53e45e\logback-core-1.0.13.jar
+C:\Users\HeoJongTae\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-api\1.7.5\6b262da268f8ad9eff941b25503a9198f0a0ac93\slf4j-api-1.7.5.jar
+C:\Users\HeoJongTae\.gradle\caches\modules-2\files-2.1\org.springframework\spring-jdbc\4.0.2.RELEASE\cafe37b39d0428548c6c14d64a4ab7bef6806728\spring-jdbc-4.0.2.RELEASE.jar
+C:\Users\HeoJongTae\.gradle\caches\modules-2\files-2.1\org.springframework\spring-tx\4.0.2.RELEASE\ac298f6f7c3cf53421a3298513357deaa5f70635\spring-tx-4.0.2.RELEASE.jar
+C:\Users\HeoJongTae\.gradle\caches\modules-2\files-2.1\org.springframework\spring-beans\4.0.2.RELEASE\d8be6f05d3d2adee55dc2f949ab02d9ee82e2220\spring-beans-4.0.2.RELEASE.jar
+C:\Users\HeoJongTae\.gradle\caches\modules-2\files-2.1\org.springframework\spring-core\4.0.2.RELEASE\75f738808c84fe3365e8e60edf3ad713667a5be1\spring-core-4.0.2.RELEASE.jar
+C:\Users\HeoJongTae\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.3\f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f\commons-logging-1.1.3.jar
+*/
+
+// 환경구성 정의
+configurations { 
+   conf
+} 
+
+// 저장소 정의
+repositories { 
+   mavenCentral() 
+} 
+  
+// 의존관계 정의 - 그룹명:모듈명:버전번호  
+dependencies { 
+   // 외부 모듈 의존 지정
+   conf 'ch.qos.logback:logback-classic:1.0.13'
+   conf 'org.springframework:spring-orm:4.0.2.RELEASE'
+   conf (group: 'org.gradle.api.plugins', name: 'gradle-cargo-plugin', version: '0.6.1')
+   
+} 
+
+task action { 
+	doLast {
+		configurations.conf.each { 
+			println (it.getAbsolutePath()) 
+		} 
+	}
+} 
