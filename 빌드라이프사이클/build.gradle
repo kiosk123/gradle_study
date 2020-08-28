@@ -1,0 +1,20 @@
+/*
+	$ gradle
+	At initialization phase.
+
+	> Configure project :
+	At configuration phase
+	Also at the configuration phase.
+	At configuration phase.
+*/
+println('At configuration phase')
+ 
+task configured { println('Also at the configuration phase.') }
+ 
+task execFirstTest { doLast { println('During the execution phase.') } }
+ 
+task execSecondTest {
+    doFirst { println ('At first during the execution phase.') }
+    doLast { println ('At last during the execution phase.') }
+    println ('At configuration phase.')
+}

@@ -1,0 +1,4 @@
+//greeter 프로젝트는 greeting-library프로젝트를 의존하고 있음
+dependencies {
+	implementation project(':greeting-library') 
+}
